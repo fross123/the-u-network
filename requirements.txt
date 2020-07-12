@@ -1,3 +1,1 @@
 Django
-python-decouple==3.3
-setuptools==49.1.2

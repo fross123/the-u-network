@@ -12,7 +12,7 @@ from .forms import NewPost
 def index(request):
     return render(request, "network/index.html", {
         "NewPost": NewPost,
-        "posts": Post.objects.all()
+        "posts": Post.objects.order_by('-date')
     })
 
 def newPost(request):

@@ -2,18 +2,28 @@
 
 {% block body %}
     {% if user.is_authenticated %}
-    <form action="{% url 'newPost' %}" method="post">
+    <form action="{% url 'newPost' %}" method="post" class="mt-3">
         {% csrf_token %}
         <div class="form-group">
             {{ NewPost }}
         </div>
         <button type="submit" class="btn btn-success">Submit New Post</button>
     </form>
-    <ul>
-        {% for post in posts %}
-        <li>Date:{{ post.date }} {{ post.content }} by {{ post.user.username }} with {{ post.likes }} likes</li>
-        {% endfor %}
-    </ul>
+    {% for post in posts %}
+    <div class="card text-white bg-dark my-3">
+        <div class="card-header">
+            <h5 class="card-title">{{ post.user.username }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ post.date }}</h6>
+        </div>
+        <div class="card-body">
+            {{ post.content }}
+            <br />
+            <a href="#" class="card-link">Like</a>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h1>Please Login to see some posts!</h1>
     {% endif %}
 
 {% endblock %}

@@ -1,12 +1,19 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
-    <form method="POST">
+    {% if user.is_authenticated %}
+    <form action="{% url 'newPost' %}" method="post">
         {% csrf_token %}
         <div class="form-group">
             {{ NewPost }}
         </div>
         <button type="submit" class="btn btn-success">Submit New Post</button>
     </form>
+    <ul>
+        {% for post in posts %}
+        <li>Date:{{ post.date }} {{ post.content }} by {{ post.user.username }} with {{ post.likes }} likes</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
 {% endblock %}

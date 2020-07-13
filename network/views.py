@@ -6,9 +6,13 @@ from django.urls import reverse
 
 from .models import User
 
+from .forms import NewPost
+
 
 def index(request):
-    return render(request, "network/index.html")
+    return render(request, "network/index.html", {
+        "NewPost": NewPost,
+    })
 
 
 def login_view(request):

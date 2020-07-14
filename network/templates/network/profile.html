@@ -2,18 +2,32 @@
 
 {% block body %}
     <h1>{{ user_profile }}</h1>
+    {% if user.is_authenticated %}
+        {% if not isFollowing %}
+        <form action="{% url 'follow' username=user_profile.username %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-primary">Follow</button>
+        </form>
+        {% elif isFollowing%}
+        <form action="{% url 'unfollow' username=user_profile.username %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Un-Follow</button>
+        </form>
+
+        {% endif %}
+    {% endif %}
     {% for post in users_posts %}
-    <div class="card text-white bg-dark my-3">
-        <div class="card-header">
-            <h5 class="card-title">{{ post.user.username }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ post.date }}</h6>
+        <div class="card text-white bg-dark my-3">
+            <div class="card-header">
+                <h5 class="card-title">{{ post.user.username }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ post.date }}</h6>
+            </div>
+            <div class="card-body">
+                {{ post.content }}
+                <br />
+                <a href="#" class="card-link">Like</a>
+            </div>
         </div>
-        <div class="card-body">
-            {{ post.content }}
-            <br />
-            <a href="#" class="card-link">Like</a>
-        </div>
-    </div>
     {% endfor %}
 
 

@@ -30,14 +30,30 @@ def newPost(request):
 
 def profile(request, username):
     try:
-        user = User.objects.get(username=username)
+        user_profile = User.objects.get(username=username)
     except User.DoesNotExist:
         raise Http404("User not found.")
+    if request.user in user_profile.followers.all():
+        isFollowing = True
+    else:
+        isFollowing = False
     return render(request, "network/profile.html", {
-        "user_profile": user,
-        "users_posts": Post.objects.filter(user=user).order_by('-date')
+        "user_profile": user_profile,
+        "users_posts": Post.objects.filter(user=user_profile).order_by('-date'),
+        "isFollowing": isFollowing
     })
 
+def follow(request, username):
+    to_follow = User.objects.get(username=username)
+    user = request.user
+    to_follow.followers.add(user)
+    return HttpResponseRedirect(reverse("profile", args=[username]))
+
+def unfollow(request, username):
+    to_unfollow = User.objects.get(username=username)
+    user = request.user
+    to_unfollow.followers.remove(user)
+    return HttpResponseRedirect(reverse("profile", args=[username]))
 
 def login_view(request):
     if request.method == "POST":

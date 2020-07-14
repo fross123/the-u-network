@@ -20,9 +20,10 @@
             {% endif %}
         {% endif %}
     {% endif %}
-    {% for post in users_posts %}
+    {% for post in page_obj %}
         {% include "network/post.html" %}
     {% endfor %}
+    {% include "network/pagination.html" %}
 
 
 {% endblock %}

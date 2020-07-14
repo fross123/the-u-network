@@ -14,7 +14,6 @@ def index(request):
     posts = Post.objects.order_by('-date')
 
     paginator = Paginator(posts, 10)
-
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -46,9 +45,15 @@ def profile(request, username):
         isFollowing = True
     elif request.user not in user_profile.followers.all():
         isFollowing = False
+
+    users_posts = Post.objects.filter(user=user_profile).order_by('-date')
+    paginator = Paginator(users_posts, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     return render(request, "network/profile.html", {
         "user_profile": user_profile,
-        "users_posts": Post.objects.filter(user=user_profile).order_by('-date'),
+        'page_obj': page_obj,
         "isFollowing": isFollowing
     })
 
@@ -65,9 +70,20 @@ def unfollow(request, username):
     return HttpResponseRedirect(reverse("profile", args=[username]))
 
 def following(request):
+    posts = Post.objects.order_by('-date')
+    user = request.user
+    following = []
+    for post in posts:
+        if post.user in user.following.all():
+            following.append(post)
+
+    paginator = Paginator(following, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     return render(request, "network/following.html", {
         "NewPost": NewPost,
-        "posts": Post.objects.order_by('-date')
+        'page_obj': page_obj
     })
 
 def login_view(request):

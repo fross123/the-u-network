@@ -9,11 +9,12 @@
             </div>
             <button type="submit" class="btn btn-success">Submit New Post</button>
         </form>
-        {% for post in posts %}
+        {% for post in page_obj %}
             {% if post.user in user.following.all %}
                 {% include "network/post.html" %}
             {% endif %}
         {% endfor %}
+        {% include "network/pagination.html" %}
     {% else %}
         <h1>Please Login to see some posts!</h1>
     {% endif %}

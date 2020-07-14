@@ -56,7 +56,6 @@ def unfollow(request, username):
     return HttpResponseRedirect(reverse("profile", args=[username]))
 
 def following(request):
-
     return render(request, "network/following.html", {
         "NewPost": NewPost,
         "posts": Post.objects.order_by('-date')

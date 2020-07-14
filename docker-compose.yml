@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-    migration:
+    test:
         build: .
-        command: python3 manage.py migrate
+        command: python3 manage.py test
         volumes:
             - .:/usr/src/app
 
@@ -14,4 +14,4 @@ services:
         ports:
             - "8000:8000"
         depends_on:
-            - migration
+            - test

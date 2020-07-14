@@ -1,8 +1,10 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
-    <h1>{{ user_profile }}</h1>
+    <h1>&commat;{{ user_profile }}</h1>
+    <h2>Follows: {{ user_profile.following.count }}</h2>
     <h2>Current Followers: {{ user_profile.followers.count }}</h2>
+
     {% if user.is_authenticated %}
         {% if user != user_profile %}
             {% if not isFollowing %}

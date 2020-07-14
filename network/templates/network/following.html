@@ -10,9 +10,9 @@
             <button type="submit" class="btn btn-success">Submit New Post</button>
         </form>
         {% for post in page_obj %}
-            {% if post.user in user.following.all %}
-                {% include "network/post.html" %}
-            {% endif %}
+            {% include "network/post.html" %}
+        {% empty %}
+            <h3>Nothing to display, try following some people!</h3>
         {% endfor %}
         {% include "network/pagination.html" %}
     {% else %}

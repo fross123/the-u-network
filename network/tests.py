@@ -20,28 +20,31 @@ class NetworkTestCase(TestCase):
         Post.objects.create(content="Fou4", user=u2, likes=0)
 
     def testAuthentication(self):
-        """ Test if User can be authenticated """
+        """ User can be authenticated """
         user1 = authenticate(self, username="AAA", password="AAA")
         user2 = authenticate(self, username="BBB", password="BBB")
         self.assertTrue(user1.is_authenticated and user2.is_authenticated)
 
     def testAuthenticationFalse(self):
-        """ Test if user is Denied """
+        """ User is Denied """
         user2 = authenticate(self, username="BBB", password="ABCD")
         self.assertEqual(user2, None)
 
     def testPosting(self):
-        """ Test if post can be created """
+        """ post can be created """
         u = authenticate(self, username="BBB", password="BBB")
         self.assertEqual(u.posts.count(), 3)
 
     def testUserFollowing(self):
-        """ How many users can I follow? """
+        """ Following Users """
+        # authenticate test user
         me = authenticate(self, username="AAA", password="AAA")
 
+        # add followers to user
         follow1 = User.objects.get(username="BBB")
         follow1.followers.add(me)
 
+        # add following to user
         follow2 = User.objects.get(username="CCC")
         follow3 = User.objects.get(username="DDD")
         me.following.add(follow2, follow3)
@@ -51,11 +54,16 @@ class NetworkTestCase(TestCase):
 
     def testUserUnfollow(self):
         """ Unfollowing Users """
+        # authenticate test user
         me = authenticate(self, username="AAA", password="AAA")
+
+        # follow users
         follow1 = User.objects.get(username="BBB")
         follow2 = User.objects.get(username="CCC")
         follow3 = User.objects.get(username="DDD")
         me.following.add(follow1, follow2, follow3)
+
+        # unfollow user
         follow2.followers.remove(me)
 
         self.assertEqual(me.following.count(), 2)

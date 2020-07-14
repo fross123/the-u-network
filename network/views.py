@@ -9,10 +9,11 @@ from .models import User, Post
 
 from .forms import NewPost
 
-
 def index(request):
+    # retrieve posts
     posts = Post.objects.order_by('-date')
 
+    # paginator
     paginator = Paginator(posts, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -37,15 +38,19 @@ def newPost(request):
 
 
 def profile(request, username):
+    # make sure user exists
     try:
         user_profile = User.objects.get(username=username)
     except User.DoesNotExist:
         raise Http404("User not found.")
+
+    # check if current user is following
     if request.user in user_profile.followers.all():
         isFollowing = True
     elif request.user not in user_profile.followers.all():
         isFollowing = False
 
+    # get posts to display
     users_posts = Post.objects.filter(user=user_profile).order_by('-date')
     paginator = Paginator(users_posts, 10)
     page_number = request.GET.get('page')
@@ -70,13 +75,17 @@ def unfollow(request, username):
     return HttpResponseRedirect(reverse("profile", args=[username]))
 
 def following(request):
+    # get posts
     posts = Post.objects.order_by('-date')
     user = request.user
     following = []
+
+    # make a list of posts from following users
     for post in posts:
         if post.user in user.following.all():
             following.append(post)
 
+    # display following posts
     paginator = Paginator(following, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

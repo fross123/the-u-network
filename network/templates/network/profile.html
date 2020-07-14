@@ -2,18 +2,20 @@
 
 {% block body %}
     <h1>{{ user_profile }}</h1>
+    <h2>Current Followers: {{ user_profile.followers.count }}</h2>
     {% if user.is_authenticated %}
-        {% if not isFollowing %}
-        <form action="{% url 'follow' username=user_profile.username %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-outline-primary">Follow</button>
-        </form>
-        {% elif isFollowing%}
-        <form action="{% url 'unfollow' username=user_profile.username %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">Un-Follow</button>
-        </form>
-
+        {% if user != user_profile %}
+            {% if not isFollowing %}
+                <form action="{% url 'follow' username=user_profile.username %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-primary">Follow</button>
+                </form>
+            {% elif isFollowing%}
+                <form action="{% url 'unfollow' username=user_profile.username %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Un-Follow</button>
+                </form>
+            {% endif %}
         {% endif %}
     {% endif %}
     {% for post in users_posts %}

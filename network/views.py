@@ -35,7 +35,7 @@ def profile(request, username):
         raise Http404("User not found.")
     if request.user in user_profile.followers.all():
         isFollowing = True
-    else:
+    elif request.user not in user_profile.followers.all():
         isFollowing = False
     return render(request, "network/profile.html", {
         "user_profile": user_profile,

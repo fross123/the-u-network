@@ -1,0 +1,15 @@
+<div class="card text-white bg-dark my-3">
+    <div class="card-header">
+        <h5 class="card-title">
+            <a href="{% url 'profile' post.user.username %}" style="color:white">
+                {{ post.user.username }}
+            </a>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ post.date }}</h6>
+    </div>
+    <div class="card-body">
+        {{ post.content }}
+        <br />
+        <a href="#" class="card-link">Like</a>
+    </div>
+</div>

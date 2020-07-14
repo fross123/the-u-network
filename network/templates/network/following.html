@@ -10,7 +10,9 @@
             <button type="submit" class="btn btn-success">Submit New Post</button>
         </form>
         {% for post in posts %}
-            {% include "network/post.html" %}
+            {% if post.user in user.following.all %}
+                {% include "network/post.html" %}
+            {% endif %}
         {% endfor %}
     {% else %}
         <h1>Please Login to see some posts!</h1>

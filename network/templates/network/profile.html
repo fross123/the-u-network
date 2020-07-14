@@ -21,17 +21,7 @@
         {% endif %}
     {% endif %}
     {% for post in users_posts %}
-        <div class="card text-white bg-dark my-3">
-            <div class="card-header">
-                <h5 class="card-title">{{ post.user.username }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ post.date }}</h6>
-            </div>
-            <div class="card-body">
-                {{ post.content }}
-                <br />
-                <a href="#" class="card-link">Like</a>
-            </div>
-        </div>
+        {% include "network/post.html" %}
     {% endfor %}
 
 

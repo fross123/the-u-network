@@ -1,5 +1,7 @@
 {% extends "network/layout.html" %}
 
+{% block title %} &commat;{{ user_profile.username }} {% endblock %}
+
 {% block body %}
     <h1>&commat;{{ user_profile }}</h1>
     <h2>Follows: {{ user_profile.following.count }}</h2>

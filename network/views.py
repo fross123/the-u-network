@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -15,6 +15,7 @@ def index(request):
         "posts": Post.objects.order_by('-date')
     })
 
+
 def newPost(request):
     if request.method == "POST":
         form = NewPost(request.POST)
@@ -25,6 +26,17 @@ def newPost(request):
             Post.objects.create(content=content, user=user, likes=0)
 
     return HttpResponseRedirect(reverse("index"))
+
+
+def profile(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        raise Http404("User not found.")
+    return render(request, "network/profile.html", {
+        "user_profile": user,
+        "users_posts": Post.objects.filter(user=user).order_by('-date')
+    })
 
 
 def login_view(request):

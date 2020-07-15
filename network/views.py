@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
@@ -74,6 +75,7 @@ def unfollow(request, username):
     to_unfollow.followers.remove(user)
     return HttpResponseRedirect(reverse("profile", args=[username]))
 
+@login_required
 def following(request):
     # get posts
     posts = Post.objects.order_by('-date')

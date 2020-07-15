@@ -8,11 +8,33 @@
         <h6 class="card-subtitle mb-2 text-muted">{{ post.date }}</h6>
     </div>
     <div class="card-body">
-        {{ post.content }}
+        <span class="content" id="content_{{ post.id }}">{{ post.content }}</span>
         <br />
-        <b href="#" class="card-link like" id="{{ post.id }}">Like</b>
+        <a href="#" class="card-link like" id="like_{{ post.id }}">Like</a>
     </div>
     {% if post.user.id is user.id %}
-        <button type="button" class="btn btn-primary edit" id="{{ post.id }}">Edit Post</button>
+        <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#editModal" data-content="{{ post.content }}" id="editPost_{{ post.id }}">Edit Post</button>
     {% endif %}
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+            <textarea class="form-control editedPost" id="editedPost"></textarea>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
 </div>

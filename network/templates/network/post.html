@@ -10,6 +10,9 @@
     <div class="card-body">
         {{ post.content }}
         <br />
-        <a href="#" class="card-link">Like</a>
+        <b href="#" class="card-link like" id="{{ post.id }}">Like</b>
     </div>
+    {% if post.user.id is user.id %}
+        <button type="button" class="btn btn-primary edit" id="{{ post.id }}">Edit Post</button>
+    {% endif %}
 </div>

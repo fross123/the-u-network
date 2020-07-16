@@ -1,10 +1,13 @@
+import json
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.core.paginator import Paginator
+from django.views.decorators.csrf import csrf_exempt
+
 
 from .models import User, Post
 
@@ -96,6 +99,28 @@ def following(request):
         "NewPost": NewPost,
         'page_obj': page_obj
     })
+
+@csrf_exempt
+def postAPI(request, postId):
+    # Query for requested post
+    try:
+        post = Post.objects.get(pk=postId)
+    except Post.DoesNotExist:
+        return JsonResponse({"error": "Post not found."}, status=404)
+
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        post.content = data.get("content")
+        post.save()
+        return HttpResponse(status=204)
+
+    elif request.method == "GET":
+        return JsonResponse(post.serialize())
+
+    else:
+        return JsonResponse({
+            "error": "GET or PUT request required."
+        }, status=400)
 
 def login_view(request):
     if request.method == "POST":

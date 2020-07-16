@@ -12,5 +12,8 @@ urlpatterns = [
     path("user/<str:username>", views.profile, name="profile"),
     path("user/<str:username>/follow", views.follow, name="follow"),
     path("user/<str:username>/unfollow", views.unfollow, name="unfollow"),
-    path("following", views.following, name="following")
+    path("following", views.following, name="following"),
+
+    # API Routes
+    path("post/<int:postId>", views.postAPI, name="postAPI")
 ]

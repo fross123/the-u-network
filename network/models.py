@@ -11,5 +11,14 @@ class Post(models.Model):
     likes = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
 
+    def serialize(self):
+        return {
+            "id": self.id,
+            "content": self.content,
+            "user": self.user.id,
+            "likes": self.likes,
+            "date": self.date
+        }
+
     def __str__(self):
         return f"{self.content} by {self.user.username} has {self.likes} likes"

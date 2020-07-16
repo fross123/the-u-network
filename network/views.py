@@ -100,6 +100,7 @@ def following(request):
         'page_obj': page_obj
     })
 
+@login_required
 @csrf_exempt
 def postAPI(request, postId):
     # Query for requested post

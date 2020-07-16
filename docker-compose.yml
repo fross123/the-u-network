@@ -1,17 +1,9 @@
 version: '3'
 
 services:
-    test:
-        build: .
-        command: python3 manage.py test
-        volumes:
-            - .:/usr/src/app
-
     web:
         build: .
         volumes:
             - .:/usr/src/app
         ports:
             - "8000:8000"
-        depends_on:
-            - test

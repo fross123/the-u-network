@@ -2,5 +2,4 @@ Django
 gunicorn
 django-heroku
 setuptools
-Werkzeug==0.16.0
 psycopg2

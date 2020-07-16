@@ -8,7 +8,7 @@ class User(AbstractUser):
 class Post(models.Model):
     content = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
-    likes = models.IntegerField()
+    likes = models.ManyToManyField(User, blank=False, related_name='liked')
     date = models.DateTimeField(auto_now_add=True)
 
     def serialize(self):
@@ -16,7 +16,7 @@ class Post(models.Model):
             "id": self.id,
             "content": self.content,
             "user": self.user.id,
-            "likes": self.likes,
+            "likes": self.likes.count(),
             "date": self.date
         }
 

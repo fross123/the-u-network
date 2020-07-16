@@ -9,10 +9,17 @@
     </div>
     <div class="card-body">
         <span class="content" id="content_{{ post.id }}">{{ post.content }}</span>
-        <br />
-        <a href="#" class="card-link like" id="like_{{ post.id }}">Like</a>
     </div>
-    {% if post.user.id is user.id %}
-        <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#editModal" id="{{ post.id }}">Edit Post</button>
+    {% if post.user.id is not user.id %}
+        <div class="card-body">
+            <span class="likes" id="likes_{{ post.id }}">{{ post.likes.count }}</span>
+            {% if user not in post.likes.all %}
+                <button type="button" onclick="likePost(this)" class="card-link btn btn-outline-primary like" id="{{ post.id }}">Like</button>
+            {% else %}
+                <button type="button" onclick="likePost(this)" class="card-link btn btn-primary unlike" id="{{ post.id }}">unlike</button>
+            {% endif%}
+        </div>
+    {% elif post.user.id is user.id %}
+        <button onclick="editPost(this)" type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#editModal" id="{{ post.id }}">Edit Post</button>
     {% endif %}
 </div>

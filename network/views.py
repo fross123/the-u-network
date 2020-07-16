@@ -111,8 +111,15 @@ def postAPI(request, postId):
 
     if request.method == "PUT":
         data = json.loads(request.body)
-        post.content = data.get("content")
-        post.save()
+        if data.get("content") is not None:
+            post.content = data.get("content")
+            post.save()
+        elif data.get("likes") is not None:
+            if data.get("like"):
+                post.likes.add(request.user)
+            else:
+                post.likes.remove(request.user)
+            post.save()
         return HttpResponse(status=204)
 
     elif request.method == "GET":

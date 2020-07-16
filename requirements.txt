@@ -1,5 +1,4 @@
-psycopg2-binary
-Django
+setuptools
+Django==3.0.8
 gunicorn
 django-heroku
-setuptools

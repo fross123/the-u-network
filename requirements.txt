@@ -1,5 +1,5 @@
+psycopg2-binary
 Django
 gunicorn
 django-heroku
 setuptools
-psycopg2-binary

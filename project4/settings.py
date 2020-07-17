@@ -136,5 +136,6 @@ DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True
 
 import sys
 if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
-    del DATABASES['default']['OPTIONS']['sslmode']
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+
+del DATABASES['default']['OPTIONS']['sslmode']

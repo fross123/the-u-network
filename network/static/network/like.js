@@ -23,3 +23,27 @@ function likePost(element) {
         })
     });
 };
+
+function getLikes(postId) {
+    fetch('/post/'+postId)
+    .then(response => response.json())
+    .then(post => {
+        if (post.liked == "") {
+            document.querySelector('#listOfLikes').innerHTML = "No Likes";
+        }
+        else {
+            document.querySelector('#listOfLikes').innerHTML = "";
+            listOfLikes = [];
+            for (i in post.liked) {
+                let element = document.createElement('li');
+                element.className = "list-group-item";
+                element.innerHTML = post.liked[i];
+                listOfLikes.push(element);
+            }
+            listOfLikes.forEach(element => {
+                document.querySelector('#listOfLikes').appendChild(element);
+            })
+
+        }
+    });
+};

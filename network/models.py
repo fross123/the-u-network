@@ -12,11 +12,15 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def serialize(self):
+        likes = []
+        for like in self.likes.all():
+            likes.append(like.username)
         return {
             "id": self.id,
             "content": self.content,
-            "user": self.user.id,
+            "user": self.user.username,
             "likes": self.likes.count(),
+            "liked": likes,
             "date": self.date
         }
 

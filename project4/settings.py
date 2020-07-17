@@ -91,7 +91,7 @@ DATABASES = {
 import sys
 if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-else:
+elif '/app' in os.environ['HOME']:
     import dj_database_url
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
@@ -135,9 +135,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#CSRF_COOKIE_SECURE = True
 
-
-
-CSRF_COOKIE_SECURE = True
-
-SESSION_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True

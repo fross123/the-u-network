@@ -2,24 +2,26 @@
     <div class="card-header">
         <h5 class="card-title">
             <a href="{% url 'profile' post.user.username %}" style="color:white">
-                {{ post.user.username }}
+                &uuml; &mdash; {{ post.user.username }}
             </a>
         </h5>
         <h6 class="card-subtitle mb-2 text-muted">{{ post.date }}</h6>
+        likes: <span class="likes" id="likes_{{ post.id }}">{{ post.likes.count }}</span>
     </div>
     <div class="card-body">
         <span class="content" id="content_{{ post.id }}">{{ post.content }}</span>
     </div>
     {% if post.user.id is not user.id %}
-        <div class="card-body">
-            <span class="likes" id="likes_{{ post.id }}">{{ post.likes.count }}</span>
+        <div class="card-footer">
             {% if user not in post.likes.all %}
                 <button type="button" onclick="likePost(this)" class="card-link btn btn-outline-primary like" id="{{ post.id }}">Like</button>
             {% else %}
                 <button type="button" onclick="likePost(this)" class="card-link btn btn-primary unlike" id="{{ post.id }}">unlike</button>
-            {% endif%}
+            {% endif %}
         </div>
     {% elif post.user.id is user.id %}
-        <button onclick="editPost(this)" type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#editModal" id="{{ post.id }}">Edit Post</button>
+        <div class="card-footer">
+            <button onclick="editPost(this)" type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#editModal" id="{{ post.id }}">Edit Post</button>
+        </div>
     {% endif %}
 </div>

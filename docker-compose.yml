@@ -5,8 +5,12 @@ services:
         image: postgres
         environment:
             POSTGRES_HOST_AUTH_METHOD: "trust"
+        env_file:
+            - web-variables.env
     migration:
         build: .
+        env_file:
+            - web-variables.env
         command: python3 manage.py migrate
         volumes:
             - .:/usr/src/app

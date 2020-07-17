@@ -3,3 +3,4 @@ psycopg2-binary
 Django==3.0.8
 gunicorn
 django-heroku
+dj-database-url

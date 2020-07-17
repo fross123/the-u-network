@@ -79,13 +79,8 @@ WSGI_APPLICATION = 'project4.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'wigpatzhauhxbt',
-        'HOST': 'ec2-3-215-83-17.compute-1.amazonaws.com',
-        'PASSWORD': 'c82b4259d024fe40f69493580c1d38b60ea98f890620ca9e334d9a97cf86a57a',
-        'PORT': 5432,
-        'CONN_MAX_AGE': 500
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -132,6 +127,9 @@ STATIC_URL = '/static/'
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 
-#CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
-#SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)

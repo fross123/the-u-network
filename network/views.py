@@ -76,7 +76,7 @@ def unfollow(request, username):
     to_unfollow = User.objects.get(username=username)
     user = request.user
     to_unfollow.followers.remove(user)
-    return HttpResponseRedirect(reverse("profile", args=[username]))
+    return HttpResponseRedirect(reverse("index"))
 
 @login_required
 def following(request):

@@ -1,14 +1,12 @@
 function editPost(element) {
-    if (element.className === 'btn btn-primary edit') {
-        let postId = element.id;
+    let postId = element.id;
 
-        fetch('/post/'+postId)
-        .then(response => response.json())
-        .then(post => {
-            document.querySelector('.editedPost').value = post.content;
-            document.querySelector('.editedPost').id = post.id;
-        });
-    }
+    fetch('/post/'+postId)
+    .then(response => response.json())
+    .then(post => {
+        document.querySelector('.editedPost').value = post.content;
+        document.querySelector('.editedPost').id = post.id;
+    });
 };
 
 

@@ -1,9 +1,23 @@
 version: '3'
 
 services:
+    db:
+        image: postgres
+        environment:
+            POSTGRES_HOST_AUTH_METHOD: "trust"
+    migration:
+        build: .
+        command: python3 manage.py migrate
+        volumes:
+            - .:/usr/src/app
+        depends_on:
+            - db
     web:
         build: .
         volumes:
             - .:/usr/src/app
         ports:
             - "8000:8000"
+        depends_on:
+            - db
+            - migration

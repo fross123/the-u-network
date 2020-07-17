@@ -26,7 +26,7 @@ SECRET_KEY = '13kl@xtukpwe&xj2xoysxe9_6=tf@f8ewxer5n&ifnd46+6$%8'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
@@ -135,6 +135,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
-#SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True

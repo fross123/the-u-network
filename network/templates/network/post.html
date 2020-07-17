@@ -21,7 +21,7 @@
         </div>
     {% elif post.user.id is user.id %}
         <div class="card-footer">
-            <button onclick="editPost(this)" type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#editModal" id="{{ post.id }}">Edit Post</button>
+            <button onclick="editPost(this)" type="button" class="btn btn-primary btn-block edit" data-toggle="modal" data-target="#editModal" id="{{ post.id }}">Edit Post</button>
         </div>
     {% endif %}
 </div>

@@ -6,4 +6,3 @@ django-heroku
 dj-database-url
 whitenoise
 django-quill-editor
-pip install quill-delta[html]

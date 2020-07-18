@@ -34,9 +34,10 @@ def newPost(request):
         form = NewPost(request.POST)
 
         if form.is_valid():
-            content = form.cleaned_data["content"]
+            content = form.cleaned_data['content']
+            html = json.loads(content)["html"]
             user = request.user
-            Post.objects.create(content=content, user=user)
+            Post.objects.create(content=html, user=user)
 
     return HttpResponseRedirect(reverse("index"))
 

@@ -26,7 +26,7 @@ SECRET_KEY = '13kl@xtukpwe&xj2xoysxe9_6=tf@f8ewxer5n&ifnd46+6$%8'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 INSTALLED_APPS = [
     'network',
+    'django_quill',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,6 +73,27 @@ TEMPLATES = [
     },
 ]
 
+QUILL_CONFIGS = {
+    'default':{
+        'theme': 'snow',
+        'modules': {
+            'syntax': True,
+            'toolbar': [
+                [
+                    {'header': []},
+                    'bold', 'italic', 'underline', 'strike',
+                    {'color': []},
+                    {'background': []},
+                ],
+                ['link'],
+                ['clean'],
+            ]
+        },
+        'placeholder': 'Compose an epic...',
+
+    }
+}
+
 WSGI_APPLICATION = 'project4.wsgi.application'
 
 
@@ -92,9 +114,9 @@ DATABASES = {
 import sys
 if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-elif '/app' in os.environ['HOME']:
-    import dj_database_url
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+#elif '/app' in os.environ['HOME']:
+#    import dj_database_url
+#    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 AUTH_USER_MODEL = "network.User"
 
@@ -147,6 +169,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False

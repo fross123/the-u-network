@@ -17,7 +17,7 @@
 
     </div>
     <div class="card-body">
-        <span class="content" id="content_{{ post.id }}">{{ post.content }}</span>
+        <span class="content" id="content_{{ post.id }}">{{ post.content |safe }}</span>
     </div>
     {% if post.user.id is not user.id %}
         <div class="card-footer">

@@ -29,10 +29,8 @@
         <script src="{% static 'network/like.js' %}"></script>
     </head>
     <body>
-
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6600cc">
             <a class="navbar-brand" href="{% url 'index' %}">the &uuml; network</a>
-
             <div>
               <ul class="navbar-nav mr-auto">
                 {% if user.is_authenticated %}

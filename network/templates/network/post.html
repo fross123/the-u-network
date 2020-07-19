@@ -17,7 +17,7 @@
 
     </div>
     <div class="card-body">
-        <span class="content" id="content_{{ post.id }}">{{ post.content |safe }}</span>
+        <span class="content" id="content_{{ post.id }}">{{ post.content_html|safe }}</span>
     </div>
     {% if post.user.id is not user.id %}
         <div class="card-footer">
@@ -29,7 +29,7 @@
         </div>
     {% elif post.user.id is user.id %}
         <div class="card-footer">
-            <button onclick="editPost(this)" type="button" class="btn btn-primary btn-block edit" data-toggle="modal" data-target="#editModal" id="{{ post.id }}">Edit Post</button>
+            <button type="button" class="btn btn-primary btn-block edit" data-toggle="modal" data-target="#editModal" id="{{ post.id }}">Edit Post</button>
         </div>
     {% endif %}
 </div>

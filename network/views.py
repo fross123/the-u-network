@@ -34,10 +34,12 @@ def newPost(request):
         form = NewPost(request.POST)
 
         if form.is_valid():
-            content = form.cleaned_data['content']
+            content = form.cleaned_data["content"]
+            delta = json.loads(content)["delta"]
             html = json.loads(content)["html"]
+            print(html)
             user = request.user
-            Post.objects.create(content=html, user=user)
+            Post.objects.create(content_delta=delta, user=user, content_html=html)
 
     return HttpResponseRedirect(reverse("index"))
 
@@ -113,7 +115,8 @@ def postAPI(request, postId):
     if request.method == "PUT":
         data = json.loads(request.body)
         if data.get("content") is not None:
-            post.content = data.get("content")
+            post.content_delta = data.get("content")
+            post.content_html = data.get("html")
             post.save()
         elif data.get("likes") is not None:
             if data.get("like"):

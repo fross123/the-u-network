@@ -8,7 +8,7 @@ class UserAdmin(admin.ModelAdmin):
     filter_horizontal = ("following",)
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("date", "content", "user")
+    list_display = ("date", "user")
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(User, UserAdmin)

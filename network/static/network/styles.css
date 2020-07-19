@@ -1,0 +1,21 @@
+.ql-editor {
+    min-height: 10em;
+}
+
+.card-header, .card-footer {
+    background: #e6ccff;
+}
+
+.card {
+    border-color: black;
+}
+
+.edit, .btn-success{
+    background-color: #6600cc;
+    border-color: #6600cc;
+}
+
+.btn-success:hover, .btn-success:active, .btn-success:focus, .edit:hover, .edit:active, .edit:focus {
+    background-color: #4d0099;
+    border-color: #6600cc;
+}

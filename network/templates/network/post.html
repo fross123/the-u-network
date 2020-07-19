@@ -1,7 +1,7 @@
-<div class="card text-white bg-dark my-3">
+<div class="card text-dark bg-light my-3">
     <div class="card-header">
         <h5 class="card-title row">
-            <a href="{% url 'profile' post.user.username %}" class="col-sm-10" style="color:white">
+            <a href="{% url 'profile' post.user.username %}" class="col-sm-10" style="color:black">
                 &uuml; &mdash; {{ post.user.username }}
             </a>
             {% if post.user in user.following.all %}
@@ -13,7 +13,7 @@
             {% endif %}
         </h5>
         <h6 class="card-subtitle mb-2 text-muted">{{ post.date }}</h6>
-        <a href="" id="{{ post.id }}"data-toggle="modal" data-target="#likesModal" onClick="getLikes(this.id)" style="color:white">likes:</a> <span href="#" class="likes" id="likes_{{ post.id }}">{{ post.likes.count }}</span>
+        <a href="" id="{{ post.id }}"data-toggle="modal" data-target="#likesModal" onClick="getLikes(this.id)" style="color:black">likes:</a> <span href="#" class="likes" id="likes_{{ post.id }}">{{ post.likes.count }}</span>
 
     </div>
     <div class="card-body">

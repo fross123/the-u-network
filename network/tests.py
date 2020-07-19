@@ -14,10 +14,10 @@ class NetworkTestCase(TestCase):
         u5 = User.objects.create_user("EEE", "EEE@test.com", "EEE")
 
         # Create test posts
-        Post.objects.create(content="Fou", user=u1)
-        Post.objects.create(content="Fou2", user=u2)
-        Post.objects.create(content="Fou3", user=u2)
-        Post.objects.create(content="Fou4", user=u2)
+        Post.objects.create(content_html="Fou", user=u1)
+        Post.objects.create(content_html="Fou2", user=u2)
+        Post.objects.create(content_html="Fou3", user=u2)
+        Post.objects.create(content_html="Fou4", user=u2)
 
     def testAuthentication(self):
         """ User can be authenticated """

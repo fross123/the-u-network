@@ -17,6 +17,7 @@
         {% include "network/pagination.html" %}
         {% include "network/editModal.html" %}
     {% else %}
-        <h1>Please Login to see some posts!</h1>
+        <h3>Welcome to the &uuml; Network</h3>
+        <h4>We are glad to have you, please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">Register</a> to continue.</h4>
     {% endif %}
 {% endblock %}

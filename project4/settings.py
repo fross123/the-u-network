@@ -112,11 +112,11 @@ DATABASES = {
 }
 
 import sys
-if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
+if 'test' in sys.argv or 'test_coverage' in sys.argv:
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-#elif '/app' in os.environ['HOME']:
-#    import dj_database_url
-#    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+elif '/app' in os.environ['HOME']:
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 AUTH_USER_MODEL = "network.User"
 

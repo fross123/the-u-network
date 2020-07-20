@@ -4,6 +4,7 @@
             <a href="{% url 'profile' post.user.username %}" class="col-sm-10" style="color:black">
                 &uuml; &mdash; {{ post.user.username }}
             </a>
+            <!-- follow or unfollow link. does nothing if self. -->
             {% if post.user in user.following.all %}
                 <a href="{% url 'unfollow' username=post.user.username %}" class="card-link col-sm-2">unfollow</a>
             {% elif post.user.id is user.id %}
@@ -21,6 +22,7 @@
     </div>
     {% if post.user.id is not user.id %}
         <div class="card-footer">
+            <!-- check if user has liked post -->
             {% if user not in post.likes.all %}
                 <button type="button" onclick="likePost(this)" class="card-link btn btn-outline-primary like" id="{{ post.id }}">Like</button>
             {% else %}

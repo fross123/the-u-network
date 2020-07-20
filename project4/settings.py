@@ -73,6 +73,7 @@ TEMPLATES = [
     },
 ]
 
+# configs for django_quill
 QUILL_CONFIGS = {
     'default':{
         'theme': 'snow',
@@ -100,6 +101,7 @@ WSGI_APPLICATION = 'project4.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# only use heroku settings if runnign on heroku
 if '/app' in os.environ['HOME']:
     import django_heroku
     django_heroku.settings(locals())
@@ -112,9 +114,11 @@ DATABASES = {
 }
 
 import sys
+# use sqlite3 for test db, not postgres
 if 'test' in sys.argv or 'test_coverage' in sys.argv:
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 elif '/app' in os.environ['HOME']:
+    # if app is running on heroku, configure database appropriately
     import dj_database_url
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
@@ -169,6 +173,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+# turned on when in production
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True

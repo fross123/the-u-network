@@ -2,11 +2,15 @@ function likePost(element) {
     let postId = element.id;
     let likes = document.querySelector('#likes_'+postId).innerHTML;
     let like = false;
+
+    // if user clicks the "Like" button
     if (element.innerHTML === "Like"){
         likes ++;
         like = true;
         element.innerHTML = "unlike";
         element.className = "card-link btn btn-primary unlike";
+
+    // if user clicks "Unlike" button
     } else if (element.innerHTML === "unlike") {
         likes --;
         like = false;

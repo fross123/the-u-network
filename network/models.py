@@ -13,6 +13,7 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def serialize(self):
+        # to generate a list of users who have liked the post
         likes = []
         for like in self.likes.all():
             likes.append(like.username)

@@ -30,14 +30,16 @@ def index(request):
 
 
 def newPost(request):
+    # form submission
     if request.method == "POST":
         form = NewPost(request.POST)
 
         if form.is_valid():
             content = form.cleaned_data["content"]
+
+            # render content and delta from quiljs
             delta = json.loads(content)["delta"]
             html = json.loads(content)["html"]
-            print(html)
             user = request.user
             Post.objects.create(content_delta=delta, user=user, content_html=html)
 

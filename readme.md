@@ -1,6 +1,8 @@
 # Project4 -- Network
 [![Build Status](https://travis-ci.com/fross123/cs50w_project4.svg?token=63YWzg2eCjLxZNQQiney&branch=master)](https://travis-ci.com/fross123/cs50w_project4)
 
+Live test site can be viewed at: https://socialnetworktesting.herokuapp.com/
+
 ## New Post
 - users can create a new post by submitting the new post form.
     - The new post form is a rich text editor created using quilljs.

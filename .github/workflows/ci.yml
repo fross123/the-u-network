@@ -7,8 +7,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run Django unit tests
-        env:
-            SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        run: |
-            pip3 install --user django
-            python3 manage.py test
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      run: |
+        pip3 install --user django
+        python3 manage.py test

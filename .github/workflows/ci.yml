@@ -13,3 +13,14 @@ jobs:
         pip3 install -U pip setuptools
         pip3 install -r requirements.txt
         python3 manage.py test
+
+  deploy_ready:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - name: Run Django Deployment Checks
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        run: |
+          pip3 install -r requirements.txt
+          python3 manage.py check --deploy

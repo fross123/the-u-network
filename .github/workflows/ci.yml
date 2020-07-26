@@ -10,5 +10,5 @@ jobs:
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: |
-        pip3 install --user django
+        pip3 install -r requirements.txt
         python3 manage.py test

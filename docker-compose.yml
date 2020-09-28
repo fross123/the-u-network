@@ -1,26 +1,17 @@
 version: '3'
 
 services:
-    migration:
-        build: .
-        env_file:
-            - web-variables.env
-        command: python3 manage.py migrate
-        volumes:
-            - .:/usr/src/app
     test:
         build: .
-        env_file:
-            - web-variables.env
-        command: python3 manage.py test
+        environment:
+          SECRET_KEY: ${SECRET_KEY}
+        command: python manage.py test
         volumes:
             - .:/usr/src/app
-        depends_on:
-            - migration
     web:
         build: .
-        env_file:
-            - web-variables.env
+        environment:
+          SECRET_KEY: ${SECRET_KEY}
         volumes:
             - .:/usr/src/app
         ports:

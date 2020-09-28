@@ -1,2 +1,5 @@
 keys.txt
-web-variables.env
+.env
+.dockerignore
+__pycache__
+*.pyc

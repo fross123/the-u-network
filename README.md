@@ -4,7 +4,7 @@
 
 Live test site can be viewed at: https://socialnetworktesting.herokuapp.com/
 
-This was a project for CS50 web. The project description can be found on the ![OpenCourseWare project page](https://cs50.harvard.edu/web/2020/projects/4/network/).
+This was a project for CS50 web. The project description can be found on the [OpenCourseWare project page](https://cs50.harvard.edu/web/2020/projects/4/network/).
 
 ## New Post
 - users can create a new post by submitting the new post form.

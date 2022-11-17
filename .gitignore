@@ -3,3 +3,5 @@ keys.txt
 .dockerignore
 __pycache__
 *.pyc
+.DS_Store
+env

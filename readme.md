@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.com/fross123/cs50w_project4.svg?token=63YWzg2eCjLxZNQQiney&branch=master)](https://travis-ci.com/fross123/cs50w_project4)
 ![Django Tests v2](https://github.com/fross123/cs50w_project4/workflows/Django%20Tests%20v2/badge.svg)
 
-Live test site can be viewed at: https://socialnetworktesting.herokuapp.com/
+Live test site can be viewed at: https://u-network-demo.up.railway.app/
 
 This was a project for CS50 web. The project description can be found on the ![OpenCourseWare project page](https://cs50.harvard.edu/web/2020/projects/4/network/).
 
